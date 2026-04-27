@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DecisionEngine — Support</title>
+<meta name="description" content="Support and FAQ for DecisionEngine, a privacy-first iOS training assistant.">
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fafafa;
+  }
+  h1 { font-size: 28px; margin-top: 0; color: #0066cc; }
+  h2 { font-size: 20px; margin-top: 32px; color: #1a1a1a; }
+  a { color: #0066cc; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+  .muted { color: #666; font-size: 14px; }
+  .divider { border: 0; border-top: 1px solid #e0e0e0; margin: 32px 0; }
+  ul li { margin-bottom: 6px; }
+  .strava-color { color: #fc4c02; }
+</style>
+</head>
+<body>
+
+<h1>DecisionEngine — Support</h1>
+
+<p class="muted">A privacy-first iOS training assistant. All data processing on your device. No cloud, no analytics server.</p>
+
+<h2>Get help</h2>
+
+<p>For any question, bug report, or feature request, please email:</p>
+
+<p><strong><a href="mailto:michael.rohr@bluewin.ch?subject=DecisionEngine%20Support">michael.rohr@bluewin.ch</a></strong></p>
+
+<p>Reply usually within 1–2 working days.</p>
+
+<hr class="divider">
+
+<h2 class="strava-color">Strava integration FAQ</h2>
+
+<p><strong>Q: How do I connect my Strava account?</strong><br>
+A: Open DecisionEngine → Settings → Data sources → Strava → tap <em>Review &amp; connect Strava</em>. You'll be redirected to the official Strava login page in a secure system browser sheet. Sign in there. We never see your password.</p>
+
+<p><strong>Q: How do I disconnect Strava?</strong><br>
+A: Settings → Data sources → Strava → tap <em>Trennen</em> (Disconnect). Your access token is deleted from this device immediately. We stop pulling new activities on the next refresh.</p>
+
+<p><strong>Q: Where can I revoke access on Strava's side?</strong><br>
+A: Visit <a href="https://www.strava.com/settings/apps">strava.com/settings/apps</a>, find DecisionEngine in your authorized apps, tap <em>Revoke Access</em>.</p>
+
+<p><strong>Q: What Strava data does DecisionEngine read?</strong><br>
+A: We request the <code>read</code> and <code>activity:read_all</code> scopes — that gives us your basic profile and the list of your activities. We use this to calculate your daily training recommendation. We do NOT write to your Strava account, never post on your behalf, never delete activities.</p>
+
+<p><strong>Q: Where does my data go?</strong><br>
+A: All processing happens on your iPhone. Your Strava workouts are stored in this device's local SwiftData database; your access token is stored in iOS Keychain. Nothing is sent to any analytics server, third party, or our backend (we don't have a backend).</p>
+
+<p><strong>Q: How do I delete all my data?</strong><br>
+A: Settings → Privacy → Delete all my data. This wipes the local SwiftData store, drops the Strava token from Keychain, and clears any cached recommendations.</p>
+
+<hr class="divider">
+
+<h2>Other providers</h2>
+
+<p>DecisionEngine reads from Apple Health by default. Optional providers — Garmin, Polar, WHOOP, Wahoo, Suunto — are added via the same Settings → Data sources flow as new credentials become available.</p>
+
+<hr class="divider">
+
+<h2>Privacy</h2>
+
+<p>Privacy policy: <a href="https://michaelrohr.github.io/auth-bouncer/privacy.html">privacy.html</a> (in preparation, links here on first publish).</p>
+
+<p class="muted">Last updated: 2026-04-27.</p>
+
+</body>
+</html>
