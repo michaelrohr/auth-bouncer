@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecisionEngine — Returning from Wahoo…</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            margin: 0;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 24px;
+            max-width: 360px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+        h1 { font-size: 17px; margin: 0 0 8px; }
+        p { font-size: 14px; color: #6e6e73; margin: 0; }
+        @media (prefers-color-scheme: dark) {
+            body { background: #000; color: #f5f5f7; }
+            .card { background: #1c1c1e; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5); }
+            p { color: #aeaeb2; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Returning to DecisionEngine…</h1>
+        <p>If the app does not open automatically, you can close this page.</p>
+    </div>
+
+    <script>
+        // OAuth callback bouncer — receives the redirect from Wahoo
+        // and forwards it to the iOS app's custom URL scheme.
+        //
+        // Why this is needed: Wahoo's developer portal validates the
+        // redirect URL (rejects custom URL schemes like
+        // decisionengine://). Same constraint as Withings. The
+        // hosted HTTPS page satisfies the validator while still
+        // delivering the callback to ASWebAuthenticationSession via
+        // the custom scheme.
+        //
+        // Query params (?code=…&state=…) flow through unchanged.
+        (function () {
+            const search = window.location.search || '';
+            const target = 'decisionengine://oauth/wahoo' + search;
+            window.location.replace(target);
+        })();
+    </script>
+</body>
+</html>
