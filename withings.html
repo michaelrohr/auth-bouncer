@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecisionEngine — Returning from Withings…</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            margin: 0;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 24px;
+            max-width: 360px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+        h1 { font-size: 17px; margin: 0 0 8px; }
+        p { font-size: 14px; color: #6e6e73; margin: 0; }
+        @media (prefers-color-scheme: dark) {
+            body { background: #000; color: #f5f5f7; }
+            .card { background: #1c1c1e; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5); }
+            p { color: #aeaeb2; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Returning to DecisionEngine…</h1>
+        <p>If the app does not open automatically, you can close this page.</p>
+    </div>
+
+    <script>
+        // OAuth callback bouncer — receives the redirect from Withings
+        // and forwards it to the iOS app's custom URL scheme.
+        //
+        // Why this is needed: Withings's developer portal validates
+        // the redirect URL via HTTP fetch (refuses to register if the
+        // URL returns non-2xx). Custom URL schemes (decisionengine://)
+        // fail that validator. The Apple mobile-OAuth standard
+        // pattern is to register a hosted HTTPS page (this one) and
+        // have it bounce to the custom scheme so
+        // ASWebAuthenticationSession can capture the callback.
+        //
+        // Query params (?code=…&state=…) flow through unchanged.
+        (function () {
+            const search = window.location.search || '';
+            const target = 'decisionengine://oauth/withings' + search;
+            window.location.replace(target);
+        })();
+    </script>
+</body>
+</html>
